@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.bak*
+*.bam
+*.bai
+*.fa
+*.faa
+*.fai
+*.treefile
+*.ckp.gz

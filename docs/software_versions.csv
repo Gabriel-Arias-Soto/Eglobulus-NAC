@@ -1,0 +1,25 @@
+programa,version,paso,entorno
+HMMER,3.4,identificacion del dominio NAM,hmmer
+MAFFT,7.526,alineamiento de proteinas,filo
+trimAl,1.5.rev1,depuracion del alineamiento,filo
+IQ-TREE,3.1.3,inferencia filogenetica,filo
+MEME,5.5.9,motivos C-terminales,rnaseq
+salmon,2.7.0,cuantificacion de RNA-seq,rnaseq
+PyMOL,3.1.0,render de estructura,struct
+Boltz-2,2.2.1,prediccion del complejo proteina-ADN,boltz-cpu
+PyTorch,2.14.0,motor de calculo de Boltz-2,boltz-cpu
+gemmi,0.7.5,lectura de coordenadas y mmCIF,struct
+matplotlib,3.11.1,composicion de la figura estructural,struct
+NumPy,2.4.6,calculo numerico de la capa estructural,struct
+pandas,3.0.5,tablas de la capa estructural,struct
+ColabFold (servidor MSA),servicio remoto,alineamiento multiple para el plegado,ninguno
+edgeR,4.8.2,expresion diferencial,r-nac
+tximport,1.38.2,lectura de la cuantificacion,r-nac
+ggtree,4.0.4,figura de filogenia,r-nac
+treeio,1.34.0,lectura de arboles,r-nac
+ComplexHeatmap,2.26.1,mapas de calor,r-nac
+gggenes,0.7.0,arquitectura y vecindades,r-nac
+ape,5.8.1,manejo de arboles,r-nac
+ggplot2,4.0.3,figuras,r-nac
+patchwork,1.3.2,paneles,r-nac
+R,4.5.3,entorno de analisis,r-nac
