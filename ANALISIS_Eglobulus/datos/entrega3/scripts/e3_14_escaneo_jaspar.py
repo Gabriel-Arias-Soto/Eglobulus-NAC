@@ -4,10 +4,10 @@ Se buscan las matrices de JASPAR 2026 CORE plants non-redundant en los 35.943 pr
 (189 NAC + fondo genómico) con FIMO 5.5.9: --text --thresh 1e-4 --max-strand y fondo de orden 0
 calculado de todos los promotores con fasta-get-markov (ambas hebras combinadas). Los promotores se
 reparten en N_TROZOS trozos; cada trozo se escanea desde una copia en /tmp (RAM) y sus sitios se
-guardan en Z en formato compacto (npz). Para los 189 NAC se guarda además la línea completa de FIMO
-con la secuencia del sitio. Nada grande se escribe en el disco de WSL.
+guardan en la carpeta del proyecto en formato compacto (npz). Para los 189 NAC se guarda además la línea completa de FIMO
+con la secuencia del sitio.
 
-Uso (desde la raíz «Revisión NAC», con el python de nac3):
+Uso (desde la raíz del proyecto):
   python e3_14_escaneo_jaspar.py preparar              tabla de motivos, trozos, fondo de Markov
   python e3_14_escaneo_jaspar.py lote [--n 8] [--procesos 8]   escanea los siguientes n trozos pendientes
   python e3_14_escaneo_jaspar.py cerrar                matrices de recuentos, sitios NAC, controles

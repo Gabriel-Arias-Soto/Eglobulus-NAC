@@ -52,7 +52,7 @@ t10 <- qpcr |>
             rnaseq_log2FC, rnaseq_FDR, locus, simbolo_manuscrito, contraste_rnaseq) |>
   arrange(match(contraste, names(EQUIV)), simbolo_unico_EglNAC)
 
-# se guarda la version anterior para que el cambio de cifras sea auditable
+# si existe una T10 previa (cuantificada contra E. grandis) se guarda una copia
 previo <- file.path(TABLAS, "T10_correlacion_qpcr_rnaseq.csv")
 if (file.exists(previo) && !file.exists(file.path(DATOS, "T10_previo_Egrandis.csv")))
   file.copy(previo, file.path(DATOS, "T10_previo_Egrandis.csv"))

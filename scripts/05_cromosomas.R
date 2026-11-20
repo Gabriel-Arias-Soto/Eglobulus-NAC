@@ -48,13 +48,12 @@ ov <- findOverlaps(gr_bl, gr_nac)
 en_bloque <- unique(subjectHits(ov))
 
 # --- que EglNAC forma cada bloque ------------------------------------------
-# Es lo que pedia la revision: la version anterior marcaba DONDE hay un bloque
-# pero no DECIA cual. Los miembros salen del mismo solape de coordenada que usa
+# La figura nombra los miembros de cada bloque, no solo su posicion. Los miembros salen del mismo solape de coordenada que usa
 # F09, asi que las dos figuras nombran exactamente el mismo conjunto de genes.
 # Junto al ideograma va SOLO el codigo; la pertenencia entera va en la clave al
 # pie. Al lado del cromosoma hay 0,87 in y el listado de B01 mide 40 caracteres,
-# de modo que ahi solo caben dos rachas: 8 de los 21 bloques salian con "...",
-# que es justo lo que la revision pedia que no pasara. En la clave caben los 21
+# de modo que ahi solo caben dos rachas: 8 de los 21 bloques saldrian
+# truncados. En la clave caben los 21
 # completos, y el codigo del ideograma es el que enlaza con ella.
 miembros <- tibble(bloque  = t15$bloque[queryHits(ov)],
                    simbolo = gr_nac$simbolo[subjectHits(ov)]) |>

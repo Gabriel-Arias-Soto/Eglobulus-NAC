@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 # 20_subfamilias_Hussey.py -> reclasifica las subfamilias NAC del censo con las etiquetas
-# PUBLICADAS de Hussey et al. (2015), no con las del manuscrito anterior.
-# Uso, desde la raiz de "Revision NAC":
+# PUBLICADAS de Hussey et al. (2015).
+# Uso, desde la raiz del proyecto:
 #     python scripts/20_subfamilias_Hussey.py              # solo calcula y compara
 #     python scripts/20_subfamilias_Hussey.py --escribir   # respalda y reescribe las tablas
 #
-# Por que existe: hasta el 12-oct-2026 las anclas de E. grandis del arbol NAC llevaban las
-# etiquetas del manuscrito previo proyectadas sobre 85 co-ortologos. Eso hacia circular la
-# concordancia con el manuscrito y dejaba fuera VIIIa (no habia anclas VIII), de modo que
-# EglNAC36 y EglNAC204 caian en IIIc.
+# Por que: las anclas llevan las etiquetas publicadas y no etiquetas proyectadas desde una
+# clasificacion previa, que harian circular la concordancia y dejarian fuera las subfamilias
+# sin anclas (p. ej. VIIIa).
 #
 # 1. Fig. S1 de Hussey (suppinfohussey/nph13139-sup-0001-figs1.pdf) es un PDF vectorial: los
 #    nombres de las puntas son texto (x ~ 500) y cada subfamilia es un corchete (objeto path

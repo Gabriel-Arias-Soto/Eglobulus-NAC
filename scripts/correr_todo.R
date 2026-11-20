@@ -19,12 +19,10 @@ PASOS <- c("01_filogenia", "02_subfamilias", "03_arquitectura", "04_motivos",
 
 RSCRIPT <- file.path(R.home("bin"), "Rscript")
 # Las cifras de 13 y 14 las escriben scripts de Python que no estan en PASOS
-# (necesitan pymol / mafft-iqtree y sus propios entornos). Borrarlas aqui dejaba
-# a 15_arbol_SNAC sin insumo y a T23 sin las filas de ortologia y estructura, y
-# el unico modo de recuperarlas era volver a correr el arbol entero.
+# (necesitan pymol / mafft-iqtree y sus propios entornos). Borrarlas aqui dejaria
+# a 15_arbol_SNAC sin insumo y a T23 sin las filas de ortologia y estructura.
 # f10.csv lo escribe 13_estructura3D.py, que se lanza a mano con el PyMOL del
-# entorno struct. Aqui figuraba como "estructura3D.csv", nombre que ningun
-# script escribe, y cada pasada completa borraba las cifras de F10 (12-oct-2026).
+# entorno struct.
 CIFRAS_EXTERNAS <- c("ortologia.csv", "f10.csv")
 .cif <- list.files("ANALISIS_Eglobulus/tablas/_cifras", full.names = TRUE)
 unlink(.cif[!basename(.cif) %in% CIFRAS_EXTERNAS])

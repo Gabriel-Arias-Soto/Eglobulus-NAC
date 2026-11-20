@@ -48,7 +48,7 @@ message(sprintf("cuerpo que cabe en pagina: %d de %d",
 if (any(!cuerpo$cabe_en_pagina))
   message("desbordan: ", paste(cuerpo$figura[!cuerpo$cabe_en_pagina], collapse = ", "))
 
-# --- conformidad con la norma de Trees -> T35 --------------------------------
+# --- conformidad con la norma de figuras de Springer -> T35 ------------------
 # Comprueba requisito a requisito lo que se puede leer del propio fichero. Lo
 # que NO se comprueba aqui, porque no esta en el PNG, queda declarado en el
 # Metodos: tipografia Arial/Helvetica y cuerpo de 8-12 pt (los fija 00_estilo.R)
@@ -72,7 +72,7 @@ tr <- a |>
          alto_mm  = round(px_alto  / dpi * 25.4, 1),
          bits     = vapply(h, `[[`, integer(1), "bits"),
          color    = TIPO_PNG[as.character(vapply(h, `[[`, integer(1), "tipo"))],
-         # Trees admite exactamente dos anchos: 84 mm (columna) y 174 mm (caja).
+         # Springer admite exactamente dos anchos: 84 mm (columna) y 174 mm (caja).
          ancho_ok = abs(ancho_mm - 84) <= 0.5 | abs(ancho_mm - 174) <= 0.5,
          alto_ok  = alto_mm <= 234.5,
          # arte combinado (trazo + rotulacion): minimo 600 ppp

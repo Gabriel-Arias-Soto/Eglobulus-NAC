@@ -1,10 +1,7 @@
 # 08_qpcr.R -> panel de validacion qRT-PCR frente a RNA-seq (ggpubr)
 # Lee la T10 que reconstruye 18_correlacion_qpcr.R: qPCR desde los RQ de T08 y
 # RNA-seq desde el DE contra E. globulus, unidos por locus y no por nombre de
-# simbolo. La version anterior de la tabla enfrentaba el qPCR con cifras de
-# otros loci y con un 0,000 que marcaba "no evaluado", asi que las cifras de
-# esta figura NO son comparables con las de la version sometida; todas se
-# recalculan aqui y se registran para la leyenda.
+# simbolo. Todas las cifras se recalculan aqui y se registran para la leyenda.
 # Las barras de error solo pueden ir en el eje x: la salida cuasi-verosimil de
 # edgeR no da error estandar del log2FC.
 if (!exists("ANCHO_COLUMNA")) source("scripts/00_estilo.R")
@@ -44,7 +41,7 @@ registrar_cifra("f03_limite_eje", sprintf("%.2f a %.2f", LIMS[1], LIMS[2]),
 d$evaluable <- !is.na(d$rnaseq_log2FC)
 ev <- filter(d, evaluable)
 # n = 11 sin empates: cor.test usa por defecto la p exacta de permutacion, que
-# es la que corresponde a este tamano; el memo cito la aproximacion asintotica.
+# es la que corresponde a este tamano.
 sp_ev    <- suppressWarnings(cor.test(ev$qpcr_log2FC, ev$rnaseq_log2FC, method = "spearman"))
 sp_todos <- suppressWarnings(cor.test(d$qpcr_log2FC,  d$rnaseq_log2FC,  method = "spearman"))
 sesgo    <- median(ev$rnaseq_log2FC - ev$qpcr_log2FC)

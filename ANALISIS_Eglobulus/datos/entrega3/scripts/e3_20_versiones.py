@@ -4,7 +4,7 @@
 Una fila por programa, paquete o base de datos que usan los guiones e3_01-e3_18, con la versión
 tal como quedó registrada al correr cada paso. No se teclea ninguna versión: cada una sale de
 
-  - datos/entrega3/entorno_nac3_paquetes.txt      lista exportada del entorno nac3 (micromamba, disco Z);
+  - datos/entrega3/entorno_nac3_paquetes.txt      lista exportada del entorno nac3 (micromamba);
   - los resumen_*.json de datos/entrega3            versiones registradas en tiempo de ejecución (HMMER y
                                                      el perfil Pfam en JCVI, FIMO, UniProt, GO, JASPAR);
   - los logs con sessionInfo()                      R y paquetes del entorno r-nac (figuras);

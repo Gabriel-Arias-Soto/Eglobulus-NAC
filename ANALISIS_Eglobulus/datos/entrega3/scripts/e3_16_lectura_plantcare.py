@@ -229,7 +229,7 @@ def main():
     res["lotes"] = lotes
     res["entrada"] = {"genes": len(seqs), "secuencias_lotes_iguales_a_NAC189_fa": True, "largo": LARGO, "solo_ACGT": True,
                       "nota": "los resultados de los trabajos del envío automático (PlantCARE_10418, _11195, _11962, "
-                              "_12688) no llegaron por correo; Gabriel volvió a subir los mismos 4 lotes desde la web "
+                              "_12688) no llegaron por correo; los mismos 4 lotes se volvieron a subir desde la web "
                               "(PlantCARE_27152, _27588, _27843, _28051). La identidad se comprueba por el contenido: md5 "
                               "de los lotes, genes de cada lote y puntaje de cada sitio en la secuencia enviada"}
     print(f"lotes: {[(k, v['trabajo_resultado'], v['secuencias'], v['filas_tab']) for k, v in lotes.items()]}")

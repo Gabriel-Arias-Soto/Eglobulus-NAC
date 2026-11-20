@@ -20,9 +20,7 @@ UMBRAL_FDR   <- 0.05
 UMBRAL_LOGFC <- 1
 # Un locus tiene senal propia si al menos la mitad de sus lecturas las asigna
 # salmon de forma unica, en vez de repartirlas por el EM entre transcritos
-# indistinguibles (T35). Sustituye a la antigua banda "senal atribuible", que
-# se definia por el numero de loci del censo que compartian co-ortologo en
-# E. grandis: contra el conspecifico esa pregunta ya no se plantea.
+# indistinguibles (T35).
 UMBRAL_UNICA <- 0.5
 # Contrastes de edgeR tal como vienen en la tabla, en el orden en que deben
 # leerse. Si el manuscrito cambia de nomenclatura se edita AQUI y nada mas.
@@ -55,8 +53,7 @@ info <- tibble(locus = ancha$locus) |>
             by = "locus") |>
   mutate(subfamilia_final = factor(as.character(subfamilia_final),
                                    levels = c(SUBFAM_NIVELES, SUBFAM_NO_EVAL)),
-         # dos propiedades distintas que la version anterior confundia en una
-         # sola banda rotulada "qRT-PCR": si la senal del locus es suya (T35) y
+         # dos propiedades distintas: si la senal del locus es suya (T35) y
          # si el gen se midio por qPCR (los cuatro de T02.medido_por_qPCR)
          unica = !is.na(frac_unica) & frac_unica >= UMBRAL_UNICA,
          qpcr  = simbolo %in% VALIDADOS)

@@ -21,15 +21,15 @@ Reglas de clasificación (declaradas aquí, antes de ver los resultados; el orde
      anotada en el tramo que comparten; se indica si el RNA-seq apoya los intrones de la proteína o los anotados.
   5. «modelo respaldado»: el mejor alineamiento limpio (≥80 % de su proteína) reproduce los intrones anotados.
   6. «sin evidencia suficiente»: ningún alineamiento cubre ≥50 % de su proteína y el gen no tiene uniones fiables.
-Controles: EglNAC66 (modelo confirmado) y EglNAC87 (intrón de 93 pb no anotado) deben salir como en el análisis previo.
+Controles: EglNAC66 (modelo confirmado) y EglNAC87 (intrón de 93 pb no anotado) deben salir con esos veredictos.
 
-Versión 2 (13-11-2026), tras revisar la primera corrida (revisar_modelos_v1.py):
+Parámetros y reglas:
   - miniprot se corre con -p 0.3 --outs=0.3 -N 100: con los valores por omisión cada proteína de E. grandis solo se
     alineaba a su mejor locus, y 18 genes de los grandes bloques en tándem (IVa, VII) quedaban sin ninguna proteína.
   - El desplazamiento de marco o la parada se ubica en la proteína (cadena cs) y se compara con el dominio NAM de esa
     proteína (hmmsearch --cut_ga): la regla 2 exige que caiga dentro del dominio y que la proteína anotada no tenga el
-    dominio completo. En la primera corrida, genes muy expresados y con dominio completo (EglNAC19, 39 y 68) salían como
-    pseudogenes por una diferencia con el ortólogo fuera del dominio; ahora quedan como «diferencia con el ortólogo
+    dominio completo. Sin esa condición, genes muy expresados y con dominio completo (EglNAC19, 39 y 68) saldrían como
+    pseudogenes por una diferencia con el ortólogo fuera del dominio; con ella quedan como «diferencia con el ortólogo
     fuera del dominio».
   - En la regla 4, el RNA-seq arbitra: si las uniones fiables confirman los intrones anotados y no los de la proteína,
     el veredicto es «modelo respaldado por RNA-seq (la proteína homóloga difiere)»; si confirman los de la proteína, es

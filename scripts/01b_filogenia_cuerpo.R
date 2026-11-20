@@ -1,7 +1,6 @@
-# 01b_filogenia_cuerpo.R -> Fig. 2 del cuerpo (árbol de la familia), rediseño del 02-11-2026.
-# Pedido de Gabriel: la versión anterior quedaba centrada con mucho margen, con las puntas apretadas y
-# líneas finas. Cambios: el abanico ocupa todo el ancho (sin leyenda lateral de 19 colores), cada
-# subfamilia se rotula con un arco exterior y su nombre (rotulado directo), ramas y puntas más gruesas.
+# 01b_filogenia_cuerpo.R -> Fig. 2 del cuerpo (árbol de la familia).
+# El abanico ocupa todo el ancho (sin leyenda lateral de 19 colores), cada subfamilia se rotula con un
+# arco exterior y su nombre (rotulado directo), y ramas y puntas van más gruesas que en F06.
 # Reutiliza árbol, censo y color de rama por consenso de 01_filogenia.R (se ejecuta primero).
 # Uso: Rscript scripts/01b_filogenia_cuerpo.R [longitudes|cladograma]
 args <- commandArgs(trailingOnly = TRUE)
@@ -21,7 +20,7 @@ q$data$sop_alto <- !is.na(q$data$soporte) & q$data$soporte >= MIN_SOPORTE
 q$data$rama <- cons[q$data$node]
 q$data$rama[q$data$isTip & q$data$especie == "grandis"] <- ETQ_ANCLA
 q$data$rama <- factor(q$data$rama, levels = c(SUBFAM_NIVELES, SUBFAM_NO_EVAL, ETQ_ANCLA))
-stopifnot(sum(q$data$sop_alto) == sum(p$data$sop_alto))      # mismos nodos que la versión anterior
+stopifnot(sum(q$data$sop_alto) == sum(p$data$sop_alto))      # mismos nodos con soporte que en F06
 
 R_MAX <- max(q$data$x, na.rm = TRUE)
 # --- arcos de subfamilia: tramos consecutivos de puntas (en el orden del abanico) de una misma
@@ -49,7 +48,7 @@ etq <- arcos |> filter(n >= 3 | run %in% (arcos |> group_by(sf) |> slice_max(n, 
   mutate(n_tot = unname(setNames(cn$n, as.character(cn$subfamilia_final))[sf]),
          texto = ifelse(mayor, sprintf("%s (%d)", sf, n_tot), sf),
          ym = (y0 + y1) / 2)
-stopifnot(sum(etq$n_tot[etq$mayor]) == n_glob)   # 18-11-2026: 185 con EglNAC37/87 corregidos
+stopifnot(sum(etq$n_tot[etq$mayor]) == n_glob)
 # el rótulo de la subfamilia del gen focal se aparta del rótulo de EglNAC66
 i_f <- which(etq$sf == GEN_FOCAL_SUBFAM & etq$y0 <= foc$y[1] & etq$y1 >= foc$y[1])
 if (length(i_f) && abs(etq$ym[i_f] - foc$y[1]) < 3)

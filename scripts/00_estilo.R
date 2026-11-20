@@ -3,8 +3,8 @@
 # Convenciones que fija este fichero:
 #   1. un unico mapa de color para subfamilia, usado en todas las figuras
 #   2. ningun titulo dentro de la imagen: el texto explicativo va en el fig.cap del .Rmd
-#   3. los dos anchos que admite Trees: 174 mm (caja completa) y 84 mm (columna)
-#   4. nomenclatura vigente: el gen protagonista es EglNAC66 (NUNCA EglNAC34)
+#   3. los dos anchos de la norma de figuras de Springer: 174 mm (caja completa) y 84 mm (columna)
+#   4. el gen protagonista es EglNAC66
 
 suppressPackageStartupMessages({
   library(ggplot2); library(dplyr); library(tidyr); library(readr)
@@ -18,10 +18,9 @@ FIGURAS  <- file.path(ANALISIS, "figuras")
 DATOS    <- file.path(ANALISIS, "datos")
 stopifnot(dir.exists(TABLAS), dir.exists(FIGURAS))
 
-# --- anchos canonicos: norma de Trees (Springer) -----------------------------
-# Springer fija DOS anchos de figura y un alto maximo, en milimetros. No son
-# los del cuerpo de A4 que usabamos antes: las figuras se maquetan a la caja de
-# la revista, no a la del borrador. Las medidas van en pulgadas porque es lo
+# --- anchos canonicos: norma de figuras de Springer --------------------------
+# Springer fija DOS anchos de figura y un alto maximo, en milimetros: las
+# figuras se maquetan a la caja de la revista, no a la del borrador. Las medidas van en pulgadas porque es lo
 # que toman ggsave() y png(), pero la cifra de referencia es la de mm.
 MM <- 1 / 25.4
 ANCHO_COLUMNA <- 174 * MM   # 6,850 in -- ancho completo de caja
@@ -33,12 +32,12 @@ ALTO_PANELES  <- 8.60       # alto de los paneles de 189 filas (F07, F04 y FIG02
 # de la revista es un techo, no una altura exigida.
 
 # --- tipografia --------------------------------------------------------------
-# Trees pide Helvetica o Arial. Si el equipo las tiene (Windows, macOS) se usan
+# Springer pide Helvetica o Arial. Si el sistema las tiene (Windows, macOS) se usan
 # tal cual; si no, se recurre a Liberation Sans, que es METRICAMENTE identica a
 # Arial, y se registra desde el paquete fontLiberation. No se renombra a
 # "Arial": el PDF debe declarar la fuente que lleva de verdad.
 #
-# fontconfig (14-10-2026). register_font() solo lo ven ragg y svglite. cairo_pdf()
+# fontconfig. register_font() solo lo ven ragg y svglite. cairo_pdf()
 # y png(type = "cairo") -los que usan guardar_figura() para el PDF y guardar_base()
 # para todo- buscan la familia en fontconfig, que no conocia Liberation Sans y
 # ponia DejaVu Sans en su lugar sin avisar: los PNG de ggplot salian en Liberation
@@ -97,8 +96,8 @@ FUENTE_PDF <- local({
 # --- altura del cuerpo de barra en los paneles de gggenes --------------------
 # gggenes dibuja el cuerpo de cada gen con una altura ABSOLUTA (unit "mm"), no
 # proporcional al paso entre filas. Con 189 filas el paso ronda 1 mm, asi que
-# el valor heredado de 1,5 mm hacia que cada barra invadiera a sus vecinas y el
-# panel se leyera como una mancha continua. La altura tiene que salir del
+# con un valor fijo de 1,5 mm cada barra invadiria a sus vecinas y el
+# panel se leeria como una mancha continua. La altura tiene que salir del
 # numero de filas y del alto util, no fijarse a ojo.
 #   reservado: pulgadas que no son panel (eje x, leyenda, separacion entre
 #              facetas y margenes), medido sobre la figura compuesta.
@@ -109,7 +108,7 @@ alto_barra <- function(n_filas, alto_fig = ALTO_PANELES,
   paso_mm <- (alto_fig - reservado) * 25.4 / n_filas
   unit(paso_mm * ocupacion, "mm")
 }
-# Trees pide 300 ppp para medio tono, 600 para arte combinado (trazo mas
+# Springer pide 300 ppp para medio tono, 600 para arte combinado (trazo mas
 # rotulacion) y 1200 para trazo puro. Todas estas figuras llevan rotulacion
 # sobre trazo o sobre medio tono, asi que la categoria que aplica es la
 # combinada y el minimo exigible es 600.
@@ -246,7 +245,7 @@ rango_compacto <- function(n, max_trozos = 3L) {
 
 # --- tema -------------------------------------------------------------------
 # plot.title y plot.subtitle van en blanco a proposito: hacen cumplir la regla 2.
-# Trees exige rotulacion de 8 a 12 pt y "variacion minima de tamano dentro de
+# Springer exige rotulacion de 8 a 12 pt y "variacion minima de tamano dentro de
 # una misma figura". theme_bw() deja axis.text en rel(0.8) = 7,2 pt con base 9,
 # por debajo del suelo, asi que se fija explicitamente. Con base 9 el rango
 # entero de la figura queda en 8-12 pt: 8 (ejes, leyenda), 8,5 (facetas),

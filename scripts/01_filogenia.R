@@ -25,8 +25,8 @@ meta <- tibble(label = arb$tip.label) |>
          es_focal = !is.na(es_focal) & es_focal)
 
 n_glob <- sum(meta$especie == "globulus")
-# 18-11-2026: el arbol tiene 185 puntas de globulus (EglNAC37 y EglNAC87 entran con
-# sus modelos corregidos, Tabla S46); el control se deriva del censo, no se teclea
+# las puntas de globulus son los genes del censo con subfamilia; el control se
+# deriva del censo, no se teclea
 stopifnot(n_glob == sum(censo$subfamilia_final != SUBFAM_NO_EVAL), sum(meta$es_focal) == 1)
 if (any(meta$especie == "globulus" & is.na(meta$subfamilia_final)))
   stop("hay puntas de globulus sin subfamilia en el censo")
@@ -119,9 +119,9 @@ p <- p +
   # a 0,28 pt los soportes no se distinguian del grosor de la rama
   geom_point2(aes(subset = sop_alto),
               size = 0.5, colour = "grey25", stroke = 0) +
-  # El anillo de puntas alineadas que llevaba antes la subfamilia se retiro: el
-  # color de rama da la misma lectura junto a la rama, y el anillo a radio
-  # constante dejaba una corona vacia entre las puntas reales y el borde.
+  # Sin anillo de puntas alineadas: el color de rama da la misma lectura junto a
+  # la rama, y un anillo a radio constante deja una corona vacia entre las puntas
+  # reales y el borde.
   # La punta de cada gen conserva su color porque una rama terminal nunca mezcla
   # subfamilias; las anclas quedan en el gris de su clave.
   geom_tippoint(aes(colour = rama), size = 0.7, stroke = 0) +
@@ -222,7 +222,7 @@ guardar_objeto(p, "P_filogenia")
 # 6,30 de ancho, asi que el panel mide 5,25 in de ancho; con alto 5,30 el panel
 # queda en 5,24 x 5,25 y el circulo alcanza su maximo. Por encima de ese alto
 # solo se anade papel en blanco.
-# desde el 02-11-2026 la Fig. 2 del cuerpo la dibuja 01b_filogenia_cuerpo.R, que ejecuta este guion antes
+# la Fig. 2 del cuerpo la dibuja 01b_filogenia_cuerpo.R, que ejecuta este guion antes
 if (!isTRUE(getOption("nac.f06_v2"))) guardar_figura(p, "F06_filogenia_NAC", alto = 5.30)
 
 volcar_cifras("f06")

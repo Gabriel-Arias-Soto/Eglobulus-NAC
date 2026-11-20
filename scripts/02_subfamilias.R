@@ -5,10 +5,7 @@
 if (!exists("ANCHO_COLUMNA")) source("scripts/00_estilo.R")
 
 censo <- leer_censo()
-# Version consolidada: una barra por subfamilia. La comparacion entre lo que ya
-# estaba en el manuscrito y lo nuevo del censo sale de la figura (G. Arias,
-# 2026-10-09); la procedencia sigue en T01.en_manuscrito y en el registro de
-# cifras. Copia de la version anterior: F05_subfamilias_NAC_procedencia.*
+# Una barra por subfamilia.
 d <- censo |>
   count(subfamilia_final, name = "n")
 tot <- d |> group_by(subfamilia_final) |> summarise(n = sum(n), .groups = "drop") |>

@@ -1,9 +1,8 @@
 #!/usr/bin/env python
-"""Figuras de qRT-PCR rehechas desde los datos por réplica (cierre del manuscrito, 26-10-2026).
+"""Figuras de qRT-PCR desde los datos por réplica.
 
 F21_qpcr_NAC: los cuatro NAC (EglNAC33, EglNAC66, EglNAC85, EglNAC115) en sequía (a) y en frío (b).
 F22_qpcr_blancos: los cuatro genes blanco (ZHD11, LTI65, NCED3, CLPD) en sequía (a) y en frío (b).
-Sustituyen a las Fig. 3 y 4 (NAC) y 7 y 8 (blancos) de la versión sometida, de las que no hay imagen en el Word.
 
 Datos
   NAC: tablas/T08 (RQ = 2^-(ΔCq - media ΔCq del control), recalculado desde los Cq crudos).
@@ -17,8 +16,8 @@ Clave de genotipos de las placas de NAC (deducida y comprobada aquí, no supuest
   para. Las hojas sin genotipo publicado (G2 en frío; G2 y G3 en sequía) no se dibujan.
 Estadística (la del texto de Métodos)
   Por gen y genotipo: Kruskal-Wallis entre los tres tratamientos y Dunn sin corrección (con corrección por empates);
-  letras de grupo con p <= 0,05 en Dunn, solo cuando el Kruskal-Wallis del genotipo da p <= 0,05 (decisión de
-  Gabriel, 02-11-2026; si no, todos los tratamientos llevan «a»). Las p de los NAC tienen que reproducir T09.
+  letras de grupo con p <= 0,05 en Dunn, solo cuando el Kruskal-Wallis del genotipo da p <= 0,05 (si no,
+  todos los tratamientos llevan «a»). Las p de los NAC tienen que reproducir T09.
 Salidas
   figuras/F21_qpcr_NAC.{png,pdf}, figuras/F22_qpcr_blancos.{png,pdf}
   tablas/T63_qpcr_estadistica_figuras.csv (gen, genotipo, KW, Dunn, letras, media, EE)

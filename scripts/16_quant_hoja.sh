@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # 16_quant_hoja.sh -> cuantificacion de las 12 librerias de HOJA de PRJNA486291
 # contra el genoma conspecifico GCA_046226855.1 (E. globulus), no contra
-# E. grandis. El motivo esta en el memo: con la referencia de E. grandis la
+# E. grandis. Con la referencia de E. grandis la
 # tabla de DE queda en loci Eucgr y hay que cruzarla con el censo por el
 # NOMBRE del simbolo, y el mismo texto nombra loci distintos en cada
 # nomenclatura. Cuantificando contra E. globulus la tabla sale en ACJRO7_*,
 # que es el identificador del censo Y el del transcrito que amplifican los
 # cebadores de qPCR (t2g.tsv), asi que no queda ningun cruce por nombre.
 #
-# Se ejecuta desde la RAIZ del proyecto, en el disco Z:
+# Se ejecuta desde la RAIZ del proyecto:
 #   bash scripts/16_quant_hoja.sh
 # Es reanudable: salta las librerias que ya tienen quant.sf.
 set -euo pipefail
@@ -119,11 +119,11 @@ for s in "${HOJA[@]}"; do
 done
 if [[ ${#bajar[@]} -gt 0 ]]; then
   echo "== fase 1: ${#bajar[@]} ficheros incompletos, reanudando =="
-  # Una conexion por biblioteca. Medido en este equipo: ENA entrega ~1,16 MB/s
+  # Una conexion por biblioteca. Medido: ENA entrega ~1,16 MB/s
   # POR CONEXION y una conexion nueva abierta con otras seis ya en curso
   # consigue su porcion integra sin quitarsela a las demas, luego el limite es
-  # del servidor por flujo y no del cliente. El disco (Z:, 183 MB/s de
-  # escritura) no interviene. Con 12 el techo son ~14 MB/s.
+  # del servidor por flujo y no del cliente. El disco no
+  # interviene. Con 12 el techo son ~14 MB/s.
   printf '%s\n' "${bajar[@]}" | xargs -P 12 -I{} bash -c 'descargar {}'
 else
   echo "== fase 1: los 12 fastq estan completos =="

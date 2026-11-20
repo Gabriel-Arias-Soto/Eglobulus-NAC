@@ -1,5 +1,5 @@
-# Funciones de dibujo de las figuras por gen del chequeo de RNA-seq de los 6 NAC de dominio parcial (recuperadas de la
-# celda que generó figuras/EglNAC*_rnaseq.png el 13-11-2026). Solo definen; no dibujan. Las usa figura_tabla_suplemento.py.
+# Funciones de dibujo de las figuras por gen del chequeo de RNA-seq de los 6 NAC de dominio parcial.
+# Solo definen; no dibujan. Las usa figura_tabla_suplemento.py.
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt

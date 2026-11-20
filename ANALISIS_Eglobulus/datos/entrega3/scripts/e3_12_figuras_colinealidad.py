@@ -112,7 +112,7 @@ COL_GAINSBORO = "#DCDCDC"        # fondo que JCVI pinta en F16 (fijo en ShadeMan
 COL_TEXTO_SEC = "#525252"
 
 # --- tipografia ----------------------------------------------------------------
-# Trees pide Helvetica o Arial. Liberation Sans (metricamente identica a Arial) viaja en
+# La norma de figuras de Springer pide Helvetica o Arial. Liberation Sans (metricamente identica a Arial) viaja en
 # el paquete R fontLiberation; se registra desde los entornos que la tengan.
 for _f in glob.glob(os.path.join(os.environ.get("CONDA_ENVS", os.path.expanduser("~/conda/envs")),
                                  "*/lib/R/library/fontLiberation/fonts/liberation-fonts/LiberationSans-*.ttf")):

@@ -35,7 +35,7 @@ assert os.path.isfile(os.path.join(RAIZ, "scripts", "00_estilo.R")), \
 ANALISIS = os.path.join(RAIZ, "ANALISIS_Eglobulus")
 TABLAS   = os.path.join(ANALISIS, "tablas")
 FIGURAS  = os.path.join(ANALISIS, "figuras")
-EST      = os.path.join(RAIZ, "estructura_EglNAC34")   # insumos de la version previa
+EST      = os.path.join(RAIZ, "estructura_EglNAC34")   # modelo, cristal recortado y vistas de camara
 REN      = os.path.join(FIGURAS, "_render3D")
 os.makedirs(REN, exist_ok=True)
 
@@ -53,7 +53,7 @@ ANCHO = float(cte("ANCHO_COLUMNA"))
 DPI   = int(float(cte("DPI")))
 GEN   = cte("GEN_FOCAL")
 
-# Trees pide Helvetica o Arial y rotulacion de 8 a 12 pt. matplotlib no pasa
+# Springer pide Helvetica o Arial y rotulacion de 8 a 12 pt. matplotlib no pasa
 # por theme_nac(), asi que la misma regla se repite aqui. Liberation Sans es
 # el sustituto metricamente identico a Arial cuando esta no existe.
 import glob as _glob
@@ -214,11 +214,10 @@ for ax, t in ((ax_a, "a"), (ax_b, "b"), (ax_c, "c")):
             fontsize=9, fontweight="bold", color="black")
 fig.canvas.draw()   # sin renderer no se puede medir el alto real de cada eje
 
-# 5,6 pt quedaba muy por debajo del minimo de 8 pt que exige Trees. Toda la
-# maquetacion de los rotulos estaba calibrada A MANO en pulgadas para ese
-# cuerpo, asi que subir solo la fuente hacia que la clave del panel b pisara
-# el bloque de RMSD y que el titulo de la barra de color chocara con la linea
-# de pLDDT. En vez de recolocar a ojo, los desplazamientos se escalan por el
+# La maquetacion de los rotulos esta calibrada en pulgadas para un cuerpo de
+# 5,6 pt, y Springer exige un minimo de 8 pt. Subir solo la fuente haria que la
+# clave del panel b pisara el bloque de RMSD y que el titulo de la barra de color
+# chocara con la linea de pLDDT, asi que los desplazamientos se escalan por el
 # mismo factor que el cuerpo: la geometria relativa se conserva exacta.
 FS_ORIG = 5.6
 FS      = 8.0
@@ -275,7 +274,7 @@ clave(ax_c, "c", [(C_ADN, "3SWP duplex (%d nt)" % n_nt),
 
 sal = os.path.join(FIGURAS, "F10_estructura3D_%s.png" % GEN)
 fig.savefig(sal, dpi=DPI, facecolor="white")
-# matplotlib escribe PNG con canal alfa; Trees pide RGB de 8 bits
+# matplotlib escribe PNG con canal alfa; Springer pide RGB de 8 bits
 # por canal y el alfa da problemas en preimpresion. Se aplana
 # sobre blanco conservando la resolucion declarada.
 from PIL import Image

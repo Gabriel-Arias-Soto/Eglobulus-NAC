@@ -33,7 +33,7 @@ if (!exists("ANCHO_COLUMNA")) source("scripts/00_estilo.R")
 suppressPackageStartupMessages(library(patchwork))
 
 E3   <- file.path(ANALISIS, "datos", "entrega3")
-# Rotulacion: theme_nac() con su base de 9 deja la figura en 8-12 pt, el rango de Trees
+# Rotulacion: theme_nac() con su base de 9 deja la figura en 8-12 pt, el rango de la norma de Springer
 # (8 ejes y leyendas, 8,5 facetas, 9 titulos de eje, 12 letra de panel), como F13/F14.
 # Con theme_nac(8) los ejes x y las leyendas salian a 7 pt (auditado en el PDF). La unica
 # excepcion son las facetas de subfamilia de F18, a 5 pt como en F07 (189 filas).
@@ -59,7 +59,7 @@ stopifnot(all(chk$simbolo == chk$simbolo.t01),
 arb   <- ape::ladderize(ape::read.tree(file.path(RAIZ, "arbol_NAC_189.treefile")))
 punta <- arb$tip.label[arb$edge[arb$edge[, 2] <= ape::Ntip(arb), 2]]
 orden <- sub("^GL_", "", grep("^GL_", punta, value = TRUE))
-# 18-11-2026: 185 puntas (EglNAC37/87 con modelo corregido); el control sale del censo
+# el numero de puntas de E. globulus sale del censo (genes con subfamilia), no se fija a mano
 stopifnot(length(orden) == sum(cen$subfamilia_final != SUBFAM_NO_EVAL), !anyDuplicated(orden))
 
 gen <- cen |>

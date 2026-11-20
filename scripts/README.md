@@ -63,18 +63,18 @@ pagina (`ALTO_MAXIMO = 8.70` in).
 ## Dependencias
 
 R 4.5 con `tidyverse`, `patchwork`, `ggrepel`, `scales`, `png`, `ape` y, de
-Bioconductor, `ggtree` y `treeio`. En este equipo estan en el entorno conda
+Bioconductor, `ggtree` y `treeio`. En el proyecto estan en el entorno conda
 `r-nac`.
 
 ## Notas
 
-- Subfamilias (12-oct-2026): `python scripts/20_subfamilias_Hussey.py` muestra
+- Subfamilias: `python scripts/20_subfamilias_Hussey.py` muestra
   los cambios sin escribir; con `--escribir` respalda las tablas en
   `ANALISIS_Eglobulus/_respaldo_pre_subfamilias_Hussey/` y las reescribe. Se
   ejecuta antes de `correr_todo.R`. Las etiquetas de las anclas salen de la
   Fig. S1 de Hussey et al. (2015), no de la Tabla S10: donde ambas discrepan
   (EgrNAC137-139) se usa la figura.
-- `01_filogenia.R` dibuja 339 puntas (183 de *E. globulus* con punta en el arbol
+- `01_filogenia.R` dibuja 341 puntas (185 de *E. globulus* con punta en el arbol
   de los 189 del censo, mas 156 anclas de *E. grandis*). Los valores de soporte
   estan en el `.treefile` y se omiten del grafico; para mostrarlos, poner
   `MOSTRAR_SOPORTE <- TRUE`.
@@ -88,14 +88,13 @@ Bioconductor, `ggtree` y `treeio`. En este equipo estan en el entorno conda
   superponer el dominio sobre el co-cristal ANAC019-ADN (3SWP). Un
   co-plegamiento no mejoraria esa evidencia; como mucho la reproduciria.
 - `13_estructura3D.py` es el unico script de figuras en Python y el unico que no
-  lanza `correr_todo.R`, porque necesita PyMOL: en este equipo esta en el
+  lanza `correr_todo.R`, porque necesita PyMOL, que esta en el
   entorno conda `struct`, no en `r-nac`. Se ejecuta a mano desde la raiz:
   `pymol -cq scripts/13_estructura3D.py`. Produce
   `F10_estructura3D_<GEN_FOCAL>.png`, deja los renders sin componer en
   `figuras/_render3D/` y sus cifras en `tablas/_cifras/f10.csv`. Hereda las dos
-  matrices de camara de `estructura_EglNAC34/vista_*.pml` para que la
-  orientacion sea la misma que la de la figura anterior y las dos se puedan
-  comparar de un vistazo.
+  matrices de camara de `estructura_EglNAC34/vista_*.pml` para fijar la
+  orientacion.
 - La ortologia con el trio de estres de Arabidopsis va en dos pasos, porque el
   analisis necesita MAFFT/trimAl/IQ-TREE (entorno conda `filo`) y la figura
   necesita ggtree (entorno `r-nac`). Desde la raiz:
@@ -106,8 +105,8 @@ Bioconductor, `ggtree` y `treeio`. En este equipo estan en el entorno conda
   de especies, y escribe `T30`-`T32` mas `tablas/_cifras/ortologia.csv`. El
   segundo dibuja `F11_ortologia_SNAC`.
 - Dos cosas de `14_ortologia_SNAC.py` que no se deben tocar sin saber por que:
-  `KMP_AFFINITY=disabled` (sin eso IQ-TREE aborta al iniciar OpenMP en este
-  equipo) y `SEMILLA`, que se pasa a las tres invocaciones de IQ-TREE: sin
+  `KMP_AFFINITY=disabled` (sin eso IQ-TREE puede abortar al iniciar OpenMP,
+  p. ej. en WSL2) y `SEMILLA`, que se pasa a las tres invocaciones de IQ-TREE: sin
   semilla fija el soporte de ramas cambia de una corrida a otra. La p de la
   prueba AU es ademas una estimacion Monte Carlo y se mueve en la ultima cifra
   aunque la semilla este fija; por eso se corre con 100.000 replicas RELL y se
@@ -115,17 +114,13 @@ Bioconductor, `ggtree` y `treeio`. En este equipo estan en el entorno conda
 - Las etiquetas de contraste estan en la constante `CONTRASTES` de
   `07_expresion.R` y en las de `08_qpcr.R`: si el manuscrito cambia de
   nomenclatura de contrastes, se editan ahi y en ningun otro sitio.
-- **La expresion se rehizo contra el genoma conspecifico.** La version sometida
-  cuantificaba contra *E. grandis* (loci `Eucgr.*`) y el unico puente con el
-  censo de *E. globulus* era el texto del simbolo. Eso falla: el mismo
-  `EglNAC33` nombra loci distintos en la numeracion del manuscrito y en la del
-  censo, de modo que el mapa de calor leia filas de un gen ajeno. `16` + `17`
-  cuantifican las 12 librerias de hoja de `PRJNA486291` contra
-  `GCA_046226855.1` y devuelven la expresion en loci `ACJRO7_*`, que es la clave
-  primaria del censo; `18` rehace `T10` por la cadena cebador -> transcrito ->
-  locus de `T11`. Ningun cruce por nombre queda en pie. **Los log2FC ya no
-  coinciden con los del material suplementario sometido**: hay que declararlo en
-  Metodos y guardar `T10_previo_Egrandis.csv` como rastro.
+- **La expresion se cuantifica contra el genoma conspecifico.** Cuantificar
+  contra *E. grandis* (loci `Eucgr.*`) obligaria a cruzar con el censo por el
+  texto del simbolo, y un mismo simbolo nombra loci distintos en numeraciones
+  distintas. `16` + `17` cuantifican las 12 librerias de hoja de `PRJNA486291`
+  contra `GCA_046226855.1` y devuelven la expresion en loci `ACJRO7_*`, que es la
+  clave primaria del censo; `18` rehace `T10` por la cadena cebador -> transcrito
+  -> locus de `T11`. Ningun cruce se hace por nombre.
 - `16_quant_hoja.sh` verifica el tamano de cada FASTQ contra el que declara ENA
   antes de cuantificar, reanuda la descarga de lo que falte y comprueba el md5.
   No es celo: siete de las doce descargas iniciales estaban truncadas, y un
@@ -133,8 +128,6 @@ Bioconductor, `ggtree` y `treeio`. En este equipo estan en el entorno conda
   subconjunto de lecturas distinto en cada grupo. `17_de_globulus.R` repite la
   comprobacion por el otro lado (`num_processed` de salmon contra `read_count`
   de ENA) y se detiene si alguna libreria no cuadra.
-- La banda "senal atribuible" de `F02` era una propiedad heredada de la
-  comparacion con *E. grandis* (loci del censo que compartian co-ortologo).
-  Contra el conspecifico esa pregunta no se plantea, y se sustituye por una
-  medida directa: la fraccion de lecturas que salmon asigna de forma unica al
-  locus, mediana sobre las 12 librerias (`T35`, umbral `UMBRAL_UNICA`).
+- La banda de senal propia de `F02` es la fraccion de lecturas que salmon asigna
+  de forma unica al locus, mediana sobre las 12 librerias (`T35`, umbral
+  `UMBRAL_UNICA`).

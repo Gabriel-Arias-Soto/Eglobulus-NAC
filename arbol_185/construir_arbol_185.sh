@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Árbol de máxima verosimilitud de los dominios NAC con 185 E. globulus + 156 anclas de E. grandis (18-11-2026).
-# Entrada: NAC_dom.trim_341.fa (revision_arbol_185.py). Mismos parámetros que el árbol de 183 (08-09-2026):
+# Árbol de máxima verosimilitud de los dominios NAC con 185 E. globulus + 156 anclas de E. grandis.
+# Entrada: NAC_dom.trim_341.fa (revision_arbol_185.py). Mismos parámetros que el árbol de 183 E. globulus:
 # ModelFinder restringido a modelos estándar (-m TEST), 1000 réplicas UFBoot y 1000 SH-aLRT. IQ-TREE 3.1.3.
-# KMP_AFFINITY=disabled evita que OpenMP aborte al fijar afinidad de hilos en WSL2.
+# KMP_AFFINITY=disabled evita que OpenMP aborte al fijar afinidad de hilos en algunos sistemas (p. ej. WSL2).
 # La búsqueda se puede cortar y retomar: IQ-TREE continúa desde arbol_NAC_189_v2.ckp.gz con el mismo comando.
 set -euo pipefail
 cd "$(dirname "$0")"

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Revisión del árbol de la familia NAC (18-11-2026): EglNAC37 y EglNAC87 entran con su modelo corregido.
+"""Revisión del árbol de la familia NAC: EglNAC37 y EglNAC87 entran con su modelo corregido.
 
 Pasos (los del Methods S1, «Identification of NAC genes» y «Review of the gene models»):
   1. Proteínas corregidas.

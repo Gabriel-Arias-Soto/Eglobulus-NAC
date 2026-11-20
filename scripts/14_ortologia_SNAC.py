@@ -5,10 +5,8 @@
     Uso:  cd <raiz del proyecto> && python scripts/14_ortologia_SNAC.py
     Entorno conda `filo` (mafft, trimal, iqtree, biopython).
 
-El manuscrito afirma la ortologia con ANAC072/RD26 apoyandose en un porcentaje de
-identidad. MAPA_revisores.md pide rehacerlo con arbol de genes y soporte de clado,
-y tiene razon por un motivo que conviene dejar escrito: la identidad no distingue
-ortologia de paralogia. ANAC019, ANAC055 y ANAC072 son parientes muy proximos
+La ortologia se decide con un arbol de genes y soporte de clado, no con un
+porcentaje de identidad, porque la identidad no distingue ortologia de paralogia. ANAC019, ANAC055 y ANAC072 son parientes muy proximos
 entre si, de modo que los tres dan identidades parecidas contra cualquier NAC de
 estres de otra especie, y elegir al mayor es elegir ruido.
 
@@ -20,8 +18,7 @@ ModelFinder, 1000 ultrafast bootstrap y 1000 replicas SH-aLRT.
 Produce ademas dos cosas que el arbol por si solo no contesta:
 
   T30  identidades dominio/completa contra cada ancla, declarando isoforma,
-       matriz, penalizaciones y region. Cierra el punto C2 de
-       DATOS_a_solicitar_Paula.md (el manuscrito dice 62,3 % y no reproduce).
+       matriz, penalizaciones y region.
   T31  que residuo lleva cada ortologo en las ocho posiciones que leen bases
        nitrogenadas en el co-cristal 3SWP (T18). Si las ocho son identicas en los
        tres parologos de Arabidopsis, la cara de union al ADN no puede decidir

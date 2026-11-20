@@ -46,7 +46,7 @@ A   <- dirname(FIGURAS)                         # ANALISIS_Eglobulus
 GOD <- file.path(A, "datos/entrega3/go")
 P_CORTE <- 0.05; Q_CORTE <- 0.2; MIN_COUNT <- 2
 PARCIAL <- "no evaluada (dominio parcial)"     # rotulo de T01/T41 (e3_07 lo excluye igual)
-TAM_TXT <- 8 / .pt                              # 8 pt, el suelo de Trees, para geom_text
+TAM_TXT <- 8 / .pt                              # 8 pt, el minimo de la norma de figuras de Springer, para geom_text
 DAGA    <- "\u2020"
 
 rd      <- function(f) read.delim(file.path(GOD, f), stringsAsFactors = FALSE, check.names = FALSE)
